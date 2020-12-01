@@ -1,3 +1,5 @@
+use itertools::Itertools;
+
 fn main() {
     let numbers = vec![
         1664, 1939, 1658, 1791, 1011, 1600, 1587, 1930, 1846, 1955, 1885, 1793, 1876, 1905, 1997,
@@ -25,4 +27,12 @@ fn main() {
             }
         }
     }
+
+    let ((n1, n2), n3) = numbers
+        .iter()
+        .cartesian_product(numbers.iter())
+        .cartesian_product(numbers.iter())
+        .find(|((n1, n2), n3)| *n1 + *n2 + *n3 == 2020)
+        .unwrap();
+    println!("{}", n1 * n2 * n3);
 }
