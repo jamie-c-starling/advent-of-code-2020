@@ -18,8 +18,10 @@ fn main() {
 fn find_sum_to_target(lines: &Vec<usize>, target: usize) {
     let max_index = lines.len() - 1;
     for i in 0..=max_index {
+        let mut sum = lines[i];
         for j in i + 1..=max_index {
-            if lines[i..=j].iter().sum::<usize>() == target {
+            sum += lines[j];
+            if sum == target {
                 let mut new_vec = lines[i..=j].to_vec();
                 new_vec.sort();
                 println!("{}", new_vec[0] + new_vec[new_vec.len() - 1]);
